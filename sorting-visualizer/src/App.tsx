@@ -1,10 +1,10 @@
 
 
-
+import { Button, ButtonGroup } from "@chakra-ui/react"
 
 function App() {
   return(
-    <div>Hello World!</div>
+    <Button colorPalette='red' rounded="md">Click me</Button>
   )
 
 }
