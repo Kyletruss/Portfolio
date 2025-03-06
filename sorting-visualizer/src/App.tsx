@@ -1,8 +1,11 @@
-// import ListGroup from "./components/ListGroup";
+import ListGroup from "./components/ListGroup";
 import Alert from "./components/Alert";
 import Button from "./components/Button";
 import DismissAlert from "./components/DismissAlert";
 import { useState } from "react";
+import { FaRegHeart } from "react-icons/fa";
+import Like from "./components/Like";
+
 
 
 function App() {
@@ -14,6 +17,7 @@ function App() {
 
   // return <div><ListGroup items={items} heading="Cities" onSelectItem={handleSelectItem} /></div>
 
+  return <div><Like onClick={() => console.log("clicked")}/></div>
 
 
   // return (
@@ -32,17 +36,17 @@ function App() {
   //   </div>
   // );
 
-  const [alertVisible, setAlertVisibility] = useState(false);
+  // const [alertVisible, setAlertVisibility] = useState(false);
 
 
 
 
-  return (
-    <div>
-      {alertVisible && <Alert onClose={() => setAlertVisibility(false)}><strong>Holy guacamole!</strong> You should check in on some of those fields below. </Alert>}
-      <Button title="Click Me!" color="primary" onClick={() => setAlertVisibility(true)}/>
-    </div>
-  );
+  // return (
+  //   <div>
+  //     {alertVisible && <Alert onClose={() => setAlertVisibility(false)}><strong>Holy guacamole!</strong> You should check in on some of those fields below. </Alert>}
+  //     <Button title="Click Me!" color="primary" onClick={() => setAlertVisibility(true)}/>
+  //   </div>
+  // );
 }
 
 

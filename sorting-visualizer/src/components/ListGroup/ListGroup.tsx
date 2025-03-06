@@ -1,5 +1,15 @@
 // import { MouseEvent } from "react";
+import styles from './ListGroup.module.css'
 import { useState } from "react";
+import styled from 'styled-components';
+
+
+
+const EndButton = styled.button`
+  background-color: red;
+  border: 1px solid red;
+  width: 50px;
+`;
 
 interface Props {
     items: string[];
@@ -26,7 +36,7 @@ function ListGroup({items, heading, onSelectItem}: Props) {
       <ul className="list-group">
         {items.map((item, index) => (
           <li
-            className={selectedIndex === index ? "list-group-item active" : "list-group-item"}
+            className={selectedIndex === index ? "list-group-item active " + styles.asdf : "list-group-item"}
             key={item}
             onClick={() => {
                 setSelectedIndex(index);
@@ -36,6 +46,7 @@ function ListGroup({items, heading, onSelectItem}: Props) {
             {item}
           </li>
         ))}
+        <EndButton className="btn btn-primary">test</EndButton>
       </ul>
     </>
   );
