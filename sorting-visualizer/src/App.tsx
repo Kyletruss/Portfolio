@@ -5,21 +5,31 @@ import NavBar from "./MyComponents/NavBar";
 import { useColorMode, useColorModeValue } from "./components/ui/color-mode"
 import * as Chakra from "@chakra-ui/react";
 import AlgorithmList from "./MyComponents/AlgorithmList";
+import SortingPanel from "./MyComponents/SortingPanel";
 
 function App() {
- 
+
+  const algorithms = [
+    {name: "Algorithm 1", id: 1},
+    {name: "Algorithm 2", id: 2},
+    {name: "Algorithm 3", id: 3},
+    {name: "Algorithm 4", id: 4}
+   ];
+
+  const [selectedAlgorithmId, setSelectAlgorithm] = useState<number | null>(null);
+
+
+  const selectedAlgorithm = algorithms.find(
+    (algorithm) => algorithm.id === selectedAlgorithmId
+  );
 
   const { toggleColorMode } = useColorMode()
 
   const bg = useColorModeValue("rgb(244, 244, 245)", "rgb(24, 24, 27)")
  const color = useColorModeValue("gray.800", "white")
+ const cSecondary = useColorModeValue("#e5e5e5", "#252525")
 
- const algorithms = [
-  {name: "Algorithm 1", id: 1},
-  {name: "Algorithm 2", id: 2},
-  {name: "Algorithm 3", id: 3},
-  {name: "Algorithm 4", id: 4}
- ];
+
 
 
 
@@ -40,10 +50,10 @@ function App() {
         </GridItem>
 
         <GridItem area="aside" display={{ base: "none", lg: "block" }}>
-        <AlgorithmList algorithms={algorithms} />
+        <AlgorithmList algorithms={algorithms} onSelectAlgorithm={setSelectAlgorithm}/>
       </GridItem>
 
-        <GridItem area='main'>Main</GridItem>
+        <GridItem area='main'><Box h="80vh" bgColor={cSecondary} mr="10" ml="10" borderRadius="lg" ><SortingPanel selectedAlgorithm={selectedAlgorithm}></SortingPanel></Box></GridItem>
       </Grid>
     </Box>
 
