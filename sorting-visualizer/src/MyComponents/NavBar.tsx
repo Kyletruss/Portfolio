@@ -1,12 +1,21 @@
-import { HStack, Image, Text } from '@chakra-ui/react'
+import { Button, HStack, Image, Text } from '@chakra-ui/react'
 import logo from '../assets/react.svg'
 import React from 'react'
+import { useColorMode, useColorModeValue, ColorModeButton } from "../components/ui/color-mode"
 
-const NavBar = () => {
+
+interface Props {
+    onChangeTheme: () => void;
+  }
+
+
+const NavBar = ({onChangeTheme}: Props) => {
+
   return (
-    <HStack>
+    <HStack p="6" justifyContent='space-between'>
         <Image src={logo} boxSize='60px'/>
-        <Text>NavBar</Text>
+        {/* <Text>NavBar</Text> */}
+        <ColorModeButton onClick={onChangeTheme}/>
     </HStack>
   )
 }
