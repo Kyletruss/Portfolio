@@ -10,10 +10,10 @@ import SortingPanel from "./MyComponents/SortingPanel";
 function App() {
 
   const algorithms = [
-    {name: "Algorithm 1", id: 1},
-    {name: "Algorithm 2", id: 2},
-    {name: "Algorithm 3", id: 3},
-    {name: "Algorithm 4", id: 4}
+    {name: "Bubble Sort", id: 1},
+    {name: "Selection Sort", id: 2},
+    {name: "Quick Sort", id: 3},
+    {name: "Merge Sort", id: 4}
    ];
 
   const [selectedAlgorithmId, setSelectAlgorithm] = useState<number | null>(null);
@@ -26,8 +26,8 @@ function App() {
   const { toggleColorMode } = useColorMode()
 
   const bg = useColorModeValue("rgb(244, 244, 245)", "rgb(24, 24, 27)")
- const color = useColorModeValue("gray.800", "white")
- const cSecondary = useColorModeValue("#e5e5e5", "#252525")
+  const color = useColorModeValue("gray.800", "white")
+  const cSecondary = useColorModeValue("#e5e5e5", "#252525")
 
 
 
