@@ -1,18 +1,17 @@
-import type { BoxProps, InputElementProps } from "@chakra-ui/react"
-import { Group, InputElement } from "@chakra-ui/react"
-import * as React from "react"
+import { forwardRef, ReactElement, ReactNode, Children, cloneElement, ComponentProps } from "react";
+import { InputGroup as ChakraInputGroup, InputLeftElement, InputRightElement, Input, Box } from "@chakra-ui/react";
 
-export interface InputGroupProps extends BoxProps {
-  startElementProps?: InputElementProps
-  endElementProps?: InputElementProps
-  startElement?: React.ReactNode
-  endElement?: React.ReactNode
-  children: React.ReactElement<InputElementProps>
-  startOffset?: InputElementProps["paddingStart"]
-  endOffset?: InputElementProps["paddingEnd"]
+export interface InputGroupProps extends ComponentProps<typeof Box> {
+  startElementProps?: ComponentProps<typeof Input>; // FIXED: Use ComponentProps<typeof Input>
+  endElementProps?: ComponentProps<typeof Input>;   // FIXED: Use ComponentProps<typeof Input>
+  startElement?: ReactNode;
+  endElement?: ReactNode;
+  children: ReactElement<ComponentProps<typeof Input>>; // FIXED: Use ComponentProps<typeof Input>
+  startOffset?: string;
+  endOffset?: string;
 }
 
-export const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>(
+export const InputGroup = forwardRef<HTMLDivElement, InputGroupProps>(
   function InputGroup(props, ref) {
     const {
       startElement,
@@ -23,31 +22,28 @@ export const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>(
       startOffset = "6px",
       endOffset = "6px",
       ...rest
-    } = props
+    } = props;
 
-    const child =
-      React.Children.only<React.ReactElement<InputElementProps>>(children)
+    const child = Children.only<ReactElement<ComponentProps<typeof Input>>>(children);
 
     return (
-      <Group ref={ref} {...rest}>
+      <ChakraInputGroup ref={ref} {...rest}>
         {startElement && (
-          <InputElement pointerEvents="none" {...startElementProps}>
+          <InputLeftElement pointerEvents="none" {...startElementProps}>
             {startElement}
-          </InputElement>
+          </InputLeftElement>
         )}
-        {React.cloneElement(child, {
-          ...(startElement && {
-            ps: `calc(var(--input-height) - ${startOffset})`,
-          }),
+        {cloneElement(child, {
+          ...(startElement && { ps: `calc(var(--input-height) - ${startOffset})` }),
           ...(endElement && { pe: `calc(var(--input-height) - ${endOffset})` }),
           ...children.props,
         })}
         {endElement && (
-          <InputElement placement="end" {...endElementProps}>
+          <InputRightElement {...endElementProps}>
             {endElement}
-          </InputElement>
+          </InputRightElement>
         )}
-      </Group>
-    )
-  },
-)
+      </ChakraInputGroup>
+    );
+  }
+);
