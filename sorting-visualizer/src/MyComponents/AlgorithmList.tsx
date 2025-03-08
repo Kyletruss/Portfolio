@@ -1,3 +1,4 @@
+import { Text } from '@chakra-ui/react';
 import { List, ListItem } from '@chakra-ui/react';
 import React from 'react';
 
@@ -16,18 +17,23 @@ interface AlgorithmListProps {
 
 const AlgorithmList: React.FC<AlgorithmListProps> = ({ algorithms, onSelectAlgorithm }) => {
   return (
-    <List.Root >
-      {algorithms.map((algorithm) => (
-        <List.Item listStyleType="none" pb="4" _hover={{ 
-            bg: "#252525", 
-            color: " white", 
-            borderRadius: "10px", 
-            cursor: "pointer"}} 
-            onClick={() => onSelectAlgorithm(algorithm.id)}
-            key={algorithm.id}>{algorithm.name}
-            </List.Item>
-      ))}
-    </List.Root>
+    <>
+
+      <List.Root >
+      <Text color="#00d8ff" fontSize="1.5em">Algorithms:</Text>
+        {algorithms.map((algorithm) => (
+          <List.Item listStyleType="none" pb="4" _hover={{ 
+              bg: "#252525", 
+              color: " white", 
+              borderRadius: "10px", 
+              cursor: "pointer"}} 
+              onClick={() => onSelectAlgorithm(algorithm.id)}
+              key={algorithm.id}>{algorithm.name}
+          </List.Item>
+        ))}
+      </List.Root>
+    </>
+
   );
 };
 

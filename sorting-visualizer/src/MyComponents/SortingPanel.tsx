@@ -226,7 +226,7 @@ const SortingPanel = React.memo(({ selectedAlgorithm }: Props) => {
           </div>
         </>
       ) : (
-        <h2>No Algorithm Selected</h2>
+        <h2>Please select an algorithm</h2>
       )}
     </div>
   );
